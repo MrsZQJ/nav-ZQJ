@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #a1 {
+            position: relative;
+        }
+
+        ul {
+            display: flex;
+            margin-top: 50px;
+        }
+
+        li {
+            width: 200px;
+            height: 50px;
+            border: 1px solid burlywood;
+            list-style: none;
+            background-color: rgba(224, 87, 74, .3);
+            z-index: 999999999;
+            text-align: center;
+            font-size: 26px;
+            line-height: 50px;
+            color: red;
+        }
+
+        #a2 {
+            width: 202px;
+            height: 50px;
+            left: 0px;
+            position: absolute;
+            transition: all .5s linear;
+            top: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="a1">
+        <ul>
+            <li class="selectedNav">富强</li>
+            <li>民主</li>
+            <li>文明</li>
+            <li>和谐</li>
+            <li>自由</li>
+            <li>平等</li>
+            <li>公正</li>
+        </ul>
+        <div id="a2" style="background-color: #98b755;"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $('ul').on('mouseenter', 'li', function (e) {
+        $('#a2').css("left", e.currentTarget.offsetLeft + "px");
+    })
+    $('ul').on('mouseleave', 'li', function (e) {
+        $("#a2").css("left", $('.selectedNav')[0].offsetLeft + "px");
+    })
+    $("#a1").on("click",'li', function (e) {
+        console.log(e.currentTarget.offsetLeft);
+        $("li").removeClass("selectedNav");
+        $(this).addClass("selectedNav");
+        $("#a2").css("left", e.currentTarget.offsetLeft + "px");
+    })
+</script>
+
+</html>
